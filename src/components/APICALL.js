@@ -17,6 +17,7 @@ class APICALL extends Component {
  getInfo() {
     NetInfo.isConnected.fetch().then(isConnected => {
             if (isConnected) {
+                //fetch('https://medicamp-so.appspot.com/mobile/' + this.props.login, {method: 'GET' })
                 fetch('https://medicamp-so.appspot.com/mobile/' + this.props.login, {method: 'GET' })
                 .then((response) => response.json())
                 .then((responseData) => {

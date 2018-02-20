@@ -11,32 +11,41 @@ import {
   Text,
   View
 } from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import { connect } from 'react-redux';
 
 
-export default class App extends Component{
+import Login from './src/components/Login';
+import Secured from './src/components/Secured';
+
+
+
+
+
+class App extends Component{
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+   
+
+ 
+
+        if (this.props.isLoggedIn) {
+            return <Secured />;
+        } else {
+            return <Login />;
+        }
+    }
 }
+ 
+const mapStateToProps = (state, ownProps) => {
+    return {
+        isLoggedIn: state.auth.isLoggedIn
+    };
+}
+ 
+export default connect(mapStateToProps)(App);
+      
+    
+  
+
 
 const styles = StyleSheet.create({
   container: {
