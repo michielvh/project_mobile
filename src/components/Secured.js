@@ -10,6 +10,7 @@ class Secured extends Component {
     }
      
     render() {
+         
         return (
             <ScrollView style={{padding: 20}}>
                 <Text style={{fontSize: 27}}>

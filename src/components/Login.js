@@ -9,11 +9,16 @@ class Login extends Component {
         this.state = {
             route: 'Login',
             username: '',
-            password: ''
+            password: '',
+            info: ''
         };
     }
  
     userLogin (e) {
+        ///////////////
+       
+        ////////////
+
         this.props.onLogin(this.state.username, this.state.password);
         e.preventDefault();
     }
