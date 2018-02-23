@@ -5,6 +5,7 @@ import { Text, TouchableHighlight, View, StyleSheet, NetInfo, TextInput } from '
 import { connect } from 'react-redux';
 
 import { addUser } from '../redux/actions/user';
+import { addKind } from '../redux/actions/kind';
 
 class UserFillData extends Component {
     constructor(props) {
@@ -110,7 +111,32 @@ salt:"",
             }
         });
         addToList(this.state.kinderen,0);
-        
+        var kindid;
+        var naam;
+        var voornaam;
+        var gebdatum;
+        var zwemmen;
+        var sport;
+        var dafi;
+        var opmerking;
+        var meldingen;
+        const arrayOfEntries = Object.entries(this.state.kinderen);
+        arrayOfEntries.map((item) =>
+        (
+            //LIJSTEN IN onKIND NOG TOEVOEGEN
+             kindid=item[1],
+             naam=item[3],
+             voornaam=item[5],
+             gebdatum=item[7],
+             zwemmen=item[9],
+             sport=item[11],
+            dafi=item[13],
+             opmerking=item[15],
+             meldingen=item[17],
+             onAddKind(kindid,naam,voornaam,gebdatum,zwemmen,sport,dafi,opmerking,meldingen),
+            //item[1] == idkind
+          this.state.kinderenids.push(item[1]) //CHECKEN OF ROND ITEM GEEN '{}' MOETEN
+        ));
     }
 
     addToList(x,y) {
@@ -149,7 +175,7 @@ salt:"",
     render() {        
         console.log(this.props);
         //console.log(this.props.selectCurrency(this.props.base));
-      onAddUser(this.state.login,this.state.role,this.state.password,this.state.naam,this.state.voornaam,this.state.tel,this.state.groepenids,this.state.voogdenids,this.state.kinderenids,this.state.takkenids);
+      onAddUser(this.props.login,this.state.role,this.state.password,this.state.naam,this.state.voornaam,this.state.tel,this.state.groepenids,this.state.voogdenids,this.state.kinderenids,this.state.takkenids);
     }
 }
     const mapStateToProps = (state) => {
@@ -159,7 +185,9 @@ salt:"",
     
     const mapDispatchToProps = (dispatch) => {
         return {
-           onAddUser: (login,role,password,naam,voornaam,tel,groepen,voogden,kinderen,takken) => { dispatch(addUser(login,role,password,naam,voornaam,tel,groepen,voogden,kinderen,takken)); }
+           onAddUser: (login,role,password,naam,voornaam,tel,groepen,voogden,kinderen,takken) => { dispatch(addUser(login,role,password,naam,voornaam,tel,groepen,voogden,kinderen,takken));},
+           onAddKind: (kindid,naam,voornaam,gebdatum,zwemmen,sport,dafi,opmerking,meldingen) => { dispatch(addKind(kindid,naam,voornaam,gebdatum,zwemmen,sport,dafi,opmerking,meldingen)); }
+
         };
       };
     
