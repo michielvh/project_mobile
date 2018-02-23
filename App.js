@@ -28,7 +28,7 @@ class App extends Component{
  
 
         if (this.props.isLoggedIn) {
-            return <Secured />;
+          return <Secured />;
         } else {
             return <Login />;
         }

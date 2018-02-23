@@ -1,0 +1,2 @@
+eerst http://localhost:8081/debugger-ui/ openen
+dan pas debuggen

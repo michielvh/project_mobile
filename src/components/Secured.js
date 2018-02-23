@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, View, Button } from 'react-native';
+import { ScrollView, Text, NetInfo, View, Button } from 'react-native';
 import { logout } from '../redux/actions/auth';
  
 class Secured extends Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            
+            username: '',
+            password: '',
+            info: 'eee'
+        };
+    }
     userLogout(e) {
         this.props.onLogout();
         e.preventDefault();
     }
      
     render() {
-         
+         ///////////////
+       
+        ////////////
         return (
             <ScrollView style={{padding: 20}}>
                 <Text style={{fontSize: 27}}>
