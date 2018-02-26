@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, TextInput, NetInfo, View, Button } from 'react-native';
 import { login } from '../redux/actions/auth';
- 
+import NewTak from '../addings/NewTak';
+import { getLijstTakkenFromAPI } from '../methodes/tak';
+
 class Login extends Component {
     constructor (props) {
         super(props);
@@ -10,7 +12,8 @@ class Login extends Component {
             route: 'Login',
             username: '',
             password: '',
-            info: [{}]
+            info: [{}],
+            takken:[]
         };
     }
  
@@ -63,9 +66,10 @@ class Login extends Component {
        
         ////////////
         let xx = [];
-        /* const rrr= */ fetch("http://api.openweathermap.org/data/2.5/weather?zip=3000,be&APPID=2dc2cbd20785c5b0f3f4369eff39e16b", {method: 'GET' }
+        /* const rrr= */ //fetch("http://api.openweathermap.org/data/2.5/weather?zip=3000,be&APPID=2dc2cbd20785c5b0f3f4369eff39e16b", {method: 'GET' }
             /* const rrr= */// fetch("http://35.195.195.51:80/api/user/", {method: 'GET' }
-       
+               /* const rrr=  fetch("https://medicamp-so.appspot.com/api/user", {method: 'GET' }
+
     ).then(response => {
             return response.json();
              })
@@ -78,8 +82,13 @@ class Login extends Component {
             });
             console.log(this.state.info);
             console.log(xx);
+            */
+           this.setState({takken: getLijstTakkenFromAPI(this.state.username)}); 
+           console.log(this.state.takken);
         this.props.onLogin(this.state.username, this.state.password);
+       
         e.preventDefault();
+    
     }
  
     toggleRoute (e) {
@@ -109,7 +118,7 @@ class Login extends Component {
                     value={this.state.password} 
                     onChangeText={(text) => this.setState({ password: text })} />
                 <View style={{margin: 7}}/>
-                <Button onPress={(e) => this.userLogin(e)} title={this.state.route}/>
+                <Button onPress={(e) => this.userLogin(e)} title={this.state.route} />
                 <Text style={{fontSize: 16, color: 'blue'}} onPress={(e) => this.toggleRoute(e)}>{alt}</Text>
             </ScrollView>
         );

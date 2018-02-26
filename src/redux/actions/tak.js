@@ -11,5 +11,16 @@
         
       }
     };
-}
 
+  }
+    export const addTakken = (takken) => {
+      return {
+        type: 'ADD_TAKKEN',
+        payload: {
+          
+         takken
+          
+        }
+      };
+
+    }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Tak } from './Tak';
+import Tak  from './Tak';
  class Groep extends Component {
     constructor(props) {
         super(props);

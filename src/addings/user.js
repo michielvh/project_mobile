@@ -51,11 +51,30 @@ salt:"",
             }
         });
     }
-    
-    getLijstGroepenFromAPI(/*URL KIND/VOOGD/TAK*/) {
+    getLijstTakkenFromAPI(/*URL KIND/VOOGD/TAK*/) {
         NetInfo.isConnected.fetch().then(isConnected => {
                 if (isConnected) {
-                    fetch('https://medicamp-so.appspot.com/api/user/'+this.props.login+'groep', {method: 'GET' })
+                    fetch('https://medicamp-so.appspot.com/api/user/'+this.props.login+'/tak', {method: 'GET' })
+                    .then((response) => response.json())
+                    .then((responseData) => {
+                        this.setState({ takken: responseData.takken
+                             });
+                    })
+                    .done();  
+                }
+            });
+            this.addToList(this.state.takken,3);
+            this.props.onAddUser(this.props.login,this.state.role,this.state.password,this.state.naam,this.state.voornaam,this.state.tel,this.state.groepenids,this.state.voogdenids,this.state.kinderenids,this.state.takkenids);
+            console.log(this.state.takkenids[0]);
+        }
+
+       
+         /*
+    getLijstGroepenFromAPI() {
+       // console.log(this.state.takken[0].idgroep);
+        NetInfo.isConnected.fetch().then(isConnected => {
+                if (isConnected) {
+                    fetch('https://medicamp-so.appspot.com/api/groep/'+this.state.takkenids[0].idgroep, {method: 'GET' })
                     .then((response) => response.json())
                     .then((responseData) => {
                         this.setState({  groepen: responseData.groepen
@@ -68,7 +87,8 @@ salt:"",
 
             
         }
-    getLijstVoogdenFromAPI(/*URL KIND/VOOGD/TAK*/) {
+
+    getLijstVoogdenFromAPI() {
         NetInfo.isConnected.fetch().then(isConnected => {
                 if (isConnected) {
                     fetch('https://medicamp-so.appspot.com/api/user/'+this.props.login+'voogd', {method: 'GET' })
@@ -83,25 +103,13 @@ salt:"",
             addToList(this.state.voogden,2);
             
         }
-    getLijstTakkenFromAPI(/*URL KIND/VOOGD/TAK*/) {
-        NetInfo.isConnected.fetch().then(isConnected => {
-                if (isConnected) {
-                    fetch('https://medicamp-so.appspot.com/api/user/'+this.props.login+'tak', {method: 'GET' })
-                    .then((response) => response.json())
-                    .then((responseData) => {
-                        this.setState({ takken: responseData.takken
-                             });
-                    })
-                    .done();  
-                }
-            });
-            addToList(this.state.takken,3);
-            
-        }
- getLijstKinderenFromAPI(/*URL KIND/VOOGD/TAK*/) {
+   
+ getLijstKinderenFromAPI() {
     NetInfo.isConnected.fetch().then(isConnected => {
             if (isConnected) {
-                fetch('https://medicamp-so.appspot.com/api/user/'+this.props.login+'kind', {method: 'GET' })
+
+                // TAK/IDTAK/KIND
+                fetch('https://medicamp-so.appspot.com/api/tak/'+this.props.login+'/kind', {method: 'GET' })
                 .then((response) => response.json())
                 .then((responseData) => {
                     this.setState({ kinderen: responseData.kinderen
@@ -138,7 +146,7 @@ salt:"",
           this.state.kinderenids.push(item[1]) //CHECKEN OF ROND ITEM GEEN '{}' MOETEN
         ));
     }
-
+*/
     addToList(x,y) {
         const arrayOfEntries = Object.entries(x);
         switch (y) {
@@ -166,6 +174,7 @@ salt:"",
                 //item[1] == idkind
               this.state.takkenids.push(item[1]) //CHECKEN OF ROND ITEM GEEN '{}' MOETEN
             ));
+           // console.log(takkenids);
                
             default:
                
@@ -175,7 +184,13 @@ salt:"",
     render() {        
         console.log(this.props);
         //console.log(this.props.selectCurrency(this.props.base));
-      onAddUser(this.props.login,this.state.role,this.state.password,this.state.naam,this.state.voornaam,this.state.tel,this.state.groepenids,this.state.voogdenids,this.state.kinderenids,this.state.takkenids);
+        this.getLogin();
+        this.getLijstTakkenFromAPI() ;
+      return(<View>
+          <Text>succes</Text>
+          <Text>{this.state.takkenids[0]}</Text>
+
+          </View> );
     }
 }
     const mapStateToProps = (state) => {
