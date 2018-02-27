@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { addKind } from '../redux/actions/kind';
 import { addKinderen } from '../redux/actions/kind';
 
+import { addKidsToTak } from '../redux/actions/tak';
 import { addTak } from '../redux/actions/tak';
 import { addTakken } from '../redux/actions/tak';
 import NewKind from '../addings/NewKind';
@@ -135,7 +136,7 @@ class NewTak extends Component {
          ));
          console.log(kids);
          console.log('AAAAAA');
-         this.onKiddos();
+        // this.onKiddos();
          this.props.onAddTak(tak.idtak,tak.naam,tak.omschrijving,this.state.kinderen); 
          console.log(this.state.kinderen);
          console.log(this.props.kinderen);
@@ -148,8 +149,9 @@ class NewTak extends Component {
   }
 
   onKiddos(){
+      var kidsids=[];
     for (var kind of this.state.kinderen) {
-        console.log(kind.idkind);
+       kidsids.push(kind.idkind);
    
   
      this.props.onAddKind(kind.idkind,kind.naam,kind.voornaam,
@@ -161,7 +163,7 @@ class NewTak extends Component {
       );  }
         
         // this.addToList(this.state.kinderen,0);
-
+      this.props.kidsToTak(this.state.takken[0],kidsids);
     
   }
   takken() {
@@ -217,8 +219,8 @@ class NewTak extends Component {
             onAddTak: (idtak,naam,omschrijving,kinderen) => { dispatch(addTak(idtak,naam,omschrijving,kinderen)); },
             onAddTakken: (takken) => { dispatch(addTakken(takken)); },
             onAddKind: (idkind,naam,voornaam,geboortedatum,zwemmen,sport,dafi,opmerking,meldingen,takken,medicaties,dieeten,ziektes,voogden) => { dispatch(addKind(idkind,naam,voornaam,geboortedatum,zwemmen,sport,dafi,opmerking,meldingen,takken,medicaties,dieeten,ziektes,voogden)); },
-            onAddKind2: (kinderen) => { dispatch(addKinderen(kinderen)); }
-
+            onAddKind2: (kinderen) => { dispatch(addKinderen(kinderen)); },
+            kidsToTak:(takId,kidsids) => { dispatch(addKidsToTak(takId,kidsids)); }
         };
       };
     

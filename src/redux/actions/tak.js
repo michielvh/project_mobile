@@ -24,3 +24,14 @@
       };
 
     }
+    export const addKidsToTak = (idtak,kidsIds) => {
+      return {
+        type: 'ADD_KIDS_TO_TAK',
+        payload: {
+          
+          idtak,kidsIds
+          
+        }
+      };
+
+    }
