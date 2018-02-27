@@ -7,7 +7,7 @@
         idkind,
         naam,
         voornaam,
-        geboortedatum:date(geboortedatum),
+        geboortedatum:'lala'/* date(geboortedatum) */,
         zwemmen,
         sport,
         dafi,
@@ -21,5 +21,14 @@
         
       }
     };
+}
+
+export const addKinderen = (kinderen) => {
+  return {
+    type: 'ADD_KINDEREN',
+    payload: {
+      kinderen
+    }
+  }
 }
 const date=(x) => Date.parse(x);

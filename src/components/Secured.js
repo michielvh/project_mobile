@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, NetInfo, View, Button } from 'react-native';
 import { logout } from '../redux/actions/auth';
-import  Groep  from './Groep';
+//import  Groep  from './Groep';
 import  Tak  from './Tak';
 //import UserFillData from '../addings/user';
 //import TakkenFillData from '../addings/takken';
 import NewTak from '../addings/NewTak';
+import NewKind from '../addings/NewKind';
 class Secured extends Component {
     constructor (props) {
         super(props);
@@ -36,6 +37,8 @@ class Secured extends Component {
                 {/* <UserFillData/> */}
                <Text> {console.log(this.props.username)}</Text>
                  <NewTak login={this.props.username}/> 
+            {/*    { this.takken().map((tak) => { return <NewKind idtak={tak.idtak}/>  })} */}
+
                {/* <Groep/> */}
               {/*  <Tak tak={this.props.takken[0]}/> */}
              {/*  <Text >{console.log(this.props.takken[0].naam)}</Text> */}
@@ -48,7 +51,7 @@ class Secured extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         username: state.auth.username,
-      //  takken:state.tak.takken
+        takken:state.tak.takken
     };
 }
  

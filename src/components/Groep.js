@@ -15,7 +15,7 @@ import Tak  from './Tak';
         return Object.keys(this.props.takken).map(key => this.props.takken[key]);
       }
   render() {
-      console.log(this.props);
+    //  console.log(this.props);
     
       
     return (
