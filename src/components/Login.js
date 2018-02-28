@@ -20,13 +20,8 @@ class Login extends Component {
     
         //////////////////////
 
-       /*  componentDidMount() {
-            let data = this.getData();
-            console.log(data);    // <-- Promise {_40: 0, _65: 0, _55: null, _72: null}
-            this.setState({
-              dataSource:this.state.dataSource.cloneWithRows(data),
-            })  
-          } */
+         
+           
         
           /* async */ /* getData() {
             const response =  fetch("http://10.0.2.2:8080/api/user/lala@hotmail.com", {
@@ -47,46 +42,12 @@ class Login extends Component {
         var fff;
        console.log(this.state.route);
         console.log(this.state.username);
-      /*   NetInfo.isConnected.fetch().then(isConnected => {
-            console.log(this.state.username);
-            if (isConnected) {
-                console.log(this.state.password);
-                //fetch('https://medicamp-so.appspot.com/mobile/' + this.props.login, {method: 'GET' })
-            fff=  fetch('http://10.0.2.2:8080/api/user/lala@hotmail.com')  
-             .then(response => {
-              //  setTimeout(() => null, 0);  // workaround for issue-6679
-              //fff= response.json();
-                return  response.json();
-              })
-               
-            }
-            console.log(this.state.info);
-           console.log(fff);
-        }); */
-       
-        ////////////
-        let xx = [];
-        /* const rrr= */ //fetch("http://api.openweathermap.org/data/2.5/weather?zip=3000,be&APPID=2dc2cbd20785c5b0f3f4369eff39e16b", {method: 'GET' }
-            /* const rrr= */// fetch("http://35.195.195.51:80/api/user/", {method: 'GET' }
-               /* const rrr=  fetch("https://medicamp-so.appspot.com/api/user", {method: 'GET' }
-
-    ).then(response => {
-            return response.json();
-             })
-            .then( (data) => {
-                this.setState({
-                    info:data,
-                  })
-                  xx.push(data);
-                  console.log(data);
-            });
-            console.log(this.state.info);
-            console.log(xx);
-            */
-           this.setState({takken: getLijstTakkenFromAPI(this.state.username)}); 
-           console.log(this.state.takken);
+        
+        
+                        
+     
         this.props.onLogin(this.state.username, this.state.password);
-       
+       console.log(this.state.takken);
         e.preventDefault();
     
     }

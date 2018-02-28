@@ -8,7 +8,7 @@ const init = {
         case 'ADD_TAK': 
         return {...state, takken:[ ...state.takken.byId, action.payload]};
         case 'ADD_TAKKEN': 
-        return {...state, takken:[ ...state.takken, action.payload]};
+        return {...state, takken:[ /* ...state.takken, */ action.payload]};
         case 'ADD_KIDS_TO_TAK': 
         
        
