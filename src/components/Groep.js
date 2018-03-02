@@ -46,7 +46,7 @@ import Tak  from './Tak';
 const mapStateToProps = (state) => {
   return {
     groepen: state.groepen.groepen,
-    takken: state.takken.takken
+    takken: state.tak.takken
   };
 };
 

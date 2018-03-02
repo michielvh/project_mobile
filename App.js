@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import Login from './src/components/Login';
 import Secured from './src/components/Secured';
 
-
+import Navigatorr from './src/navigation/Navigator';
 
 
 
@@ -28,7 +28,8 @@ class App extends Component{
  
 
         if (this.props.isLoggedIn) {
-          return <Secured />;
+         // return <Secured />;
+          return <Navigatorr/>
         } else {
             return <Login />;
         }

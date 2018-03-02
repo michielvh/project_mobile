@@ -5,24 +5,29 @@ import { connect } from 'react-redux';
  class Tak extends Component {
     constructor(props) {
         super(props);
-        this.state = { location: '' };
+
     }
 
-
+    takken() {
+      return Object.keys(this.props.takken).map(key => this.props.takken[key]);
+    }
   render() {
-      console.log(this.props);
+   
     
       
     return (
       <View>
- 
+          
+          { this.takken().map((tak) => {
+            console.log(tak);
+          return (
             <TouchableHighlight 
-              onPress={() => this.props.navigation.navigate('TakDetails', this.props.idtak )}
+              onPress={() => this.props.navigation.navigate('TakDetails', { tak })}
             >
-              <Text key={this.props.tak.idtak}> {this.props.tak.naam}</Text>
-             
-           
+              <Text key={tak.idtak}> {tak.naam}</Text>
             </TouchableHighlight>
+         );
+        })}
          
   
       </View>
@@ -32,22 +37,10 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-
+    takken:state.tak.takken[0].takken
   };
 };
 
 export default connect(mapStateToProps)(Tak);
 
-const styles = StyleSheet.create({
 
-  loginButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: '#841584',
-  },
-  titleText: {
-    fontSize: 20, 
-    fontWeight: 'bold',
-  }
-  
-});
