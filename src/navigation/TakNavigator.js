@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation';
 import OverviewPage from '../pages/OverviewPage';
 import TakDetails from '../pages/TakDetails';
 import KindDetails from '../pages/KindDetails';
+import KindNavigator from '../navigation/KindNavigator';
 
 const TakNavigator = StackNavigator({
     Overview: {
@@ -16,8 +17,8 @@ const TakNavigator = StackNavigator({
             title: 'Tak details',
         },
      },
-     KindDetails: {
-        screen: KindDetails,
+     KindNavigator: {
+        screen: KindNavigator,
         navigationOptions: {
             title: 'Kind details',
         },

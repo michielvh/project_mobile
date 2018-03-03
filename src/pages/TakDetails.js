@@ -40,7 +40,7 @@ class TakDetails extends Component {
              console.log(kind);
           return (
             <TouchableHighlight 
-              onPress={() => this.props.navigation.navigate('KindDetails', { kind })}
+              onPress={() => this.props.navigation.navigate('KindNavigator', { kind })}
             >
               <Text  key={kind.idkind}> {kind.naam}</Text>
             </TouchableHighlight>

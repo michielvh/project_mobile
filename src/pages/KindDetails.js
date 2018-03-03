@@ -8,10 +8,12 @@ class KindDetails extends Component {
  
 
     render() {
-      
+        console.log(this.props.navigation.state);
+        const { params } = this.props.navigation.state;
+        const kind = params ? params.kind : null;
       
           return (
-              <KindNavigator/>
+              <KindNavigator kindd={kind}/>
          );
         }
 }
