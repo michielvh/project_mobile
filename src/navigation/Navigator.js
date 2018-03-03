@@ -1,14 +1,17 @@
 import { TabNavigator } from 'react-navigation';
 import Secured from '../components/Secured';
-
+import OuderStackNavigator from '../navigation/OuderStackNavigator';
 import TakStack from './TakNavigator';
 
 const Navigatorr = TabNavigator({
         LoggedIn: {
             screen: Secured
          },
-        Overview: {
+        Leiding: {
             screen: TakStack
+        }, 
+        Ouder: {
+            screen: OuderStackNavigator
         }, 
        
 });

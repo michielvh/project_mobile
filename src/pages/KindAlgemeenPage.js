@@ -5,11 +5,17 @@ import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
 class KindAlgemeenPage extends Component {
     
  
+   
+        constructor(props) {
+            super(props);
+          
+        }
     
     render() {
-      
-        const { params } = this.props.navigation.state;
-        const kind = params ? params.kind : null;
+      console.log(this.props);
+       const { params } = this.props.navigation.state;
+       const kind = params ? params.kind : null;
+      // const kind=this.props.kind;
           return (
             <ScrollView>
             <Text>Naam: {kind.naam}</Text>

@@ -3,22 +3,20 @@ import { connect } from 'react-redux';
 import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
 import KindNavigator from '../navigation/KindNavigator';
 
-class KindDetails extends Component {
+class TakPage extends Component {
     
-    constructor(props) {
-        super(props);
-       
-    }
+ 
 
     render() {
         console.log(this.props.navigation.state);
         const { params } = this.props.navigation.state;
         const kind = params ? params.kind : null;
-      const x=this.props.kind;
+        const x=this.props.kind;
       console.log(x);
+      //HIER NOG TAKINFO UIT KIND HALEN : GROEPINFO, LIJST VAN LEIDING, TAKINFO (INVERSCHILLENDE TABS)
           return (
-              <KindNavigator kind={kind} />
-              
+              <ScrollView></ScrollView>
+            //  <KindNavigator kindd={kind}/>
          );
         }
 }
@@ -29,4 +27,4 @@ const mapStateToProps = (state) => {
     };
 };
  
-export default connect(mapStateToProps)(KindDetails);
+export default connect(mapStateToProps)(TakPage);
