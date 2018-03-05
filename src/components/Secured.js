@@ -25,11 +25,17 @@ class Secured extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.token);
+      //  var headers : {
+        //    'Authorization': this.props.token
+        //}
         NetInfo.isConnected.fetch().then(isConnected => {
             console.log(this.state.username);
             if (isConnected) {
                 console.log(this.state.password);
-                fetch('https://medicamp-so.appspot.com/api/'+ this.props.username+'/mobiel' , {method: 'GET' })
+                fetch('https://medicamp-so.appspot.com/api/'+ this.props.username+'/mobiel', {method: 'GET', headers : {
+                        'Authorization': this.props.token
+                    } })
                 .then((response) => response.json())
                 .then((responseData) => {
                     this.setState({ takken: responseData
@@ -88,6 +94,7 @@ class Secured extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         username: state.auth.username,
+        token: state.auth.token,
         takken:state.tak.takken,
         kinderen:state.kind.kinderen,
         user:state.user.users

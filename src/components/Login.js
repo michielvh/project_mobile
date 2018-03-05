@@ -4,7 +4,7 @@ import { ScrollView, Text, TextInput, NetInfo, View, Button } from 'react-native
 import { login } from '../redux/actions/auth';
 import NewTak from '../addings/NewTak';
 import { getLijstTakkenFromAPI } from '../methodes/tak';
-
+import axios from 'axios';
 class Login extends Component {
     constructor (props) {
         super(props);
@@ -13,7 +13,8 @@ class Login extends Component {
             username: '',
             password: '',
             info: [{}],
-            takken:[]
+            takken:[],
+            token: ''
         };
     }
  
@@ -37,16 +38,30 @@ class Login extends Component {
           }  */
 
         ///////////////
+          fixToken(){
+            var x='';
+            axios.post('https://medicamp-so.appspot.com/api/auth/login', {
+                login: this.state.username,
+                password: this.state.password
+            }).then((response)=>{
+              // x= response.headers.authorization;
+               this.setState({token: response.headers.authorization})
+            });
+          }
+
+
         userLogin (e) {
             /////////////
         var fff;
+        
        console.log(this.state.route);
         console.log(this.state.username);
         
-        
+    
                         
-     
-        this.props.onLogin(this.state.username, this.state.password);
+        console.log(this.state.token);
+        //console.log(x);
+        this.props.onLogin(this.state.username, this.state.password,this.state.token);
        console.log(this.state.takken);
         e.preventDefault();
     
@@ -141,6 +156,8 @@ class Login extends Component {
                     value={this.state.password} 
                     onChangeText={(text) => this.setState({ password: text })} />
                 <View style={{margin: 7}}/>
+                <Button onPress={(e) => this.fixToken()} title='Fix Token' />
+
                 <Button onPress={(e) => this.userLogin(e)} title={this.state.route} />
                 <Text style={{fontSize: 16, color: 'blue'}} onPress={(e) => this.toggleRoute(e)}>{alt}</Text>
             </ScrollView>
@@ -157,7 +174,7 @@ const mapStateToProps = (state, ownProps) => {
  
 const mapDispatchToProps = (dispatch) => {
     return {
-        onLogin: (username, password) => { dispatch(login(username, password)); },
+        onLogin: (username, password, token) => { dispatch(login(username, password, token)); },
       
     }
 }
