@@ -40,12 +40,30 @@ class Login extends Component {
  */
     }
      showDelayedNotification () {
-        var xx = new Date(Date.UTC(2018, 2, 6, 5, 21, 0)); //-1 maand (januari 1970)
+        
+        var xx = new Date(Date.UTC(2018, 2, 6, 11, 19, 40)); //-1 maand (januari 1970)
        // var myVarr = xx.valueOf();
         PushNotification.localNotificationSchedule({
           message: 'Hello World!',
-          date: new Date( xx)
+          date: new Date( xx),
+          soundName: 'pillen.mp3'
         });
+        var xxx = new Date(Date.UTC(2018, 2, 6, 11, 19, 10)); //-1 maand (januari 1970)
+
+        PushNotification.localNotificationSchedule({
+            message: 'Hello World!!!!!',
+            date: new Date( xxx),
+            soundName: 'pillen.mp3'
+          });
+
+        var birthday = new Date(xx);
+        var dag = birthday.getDate();
+        var maand = birthday.getMonth();
+        var jaar = birthday.getFullYear();
+        var hours = birthday.getHours();
+        var minutes = birthday.getMinutes();
+        var seconds = birthday.getSeconds();
+       // console.log(date1);
         console.log(Date.now());
         console.log(xx.valueOf());
         console.log(new Date(xx));

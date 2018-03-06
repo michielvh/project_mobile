@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
-
+import { ScrollView, View, Text, TouchableHighlight, Button } from 'react-native';
+import { Switch } from 'react-native-switch';
+import  PushNotification  from 'react-native-push-notification';
+import KindSlider from '../components/KindSlider'
 class TakDetails extends Component {
    
     kinderenVanTak(tak) {
@@ -28,6 +30,11 @@ class TakDetails extends Component {
         return Object.keys(x).map(key => x[key]);
       }
 
+     
+
+     
+
+
     render() {
         console.log(this.props.navigation.state);
         const { params } = this.props.navigation.state;
@@ -38,13 +45,21 @@ class TakDetails extends Component {
         <ScrollView>
         { this.kinderen(tak).map((kind) => {
              console.log(kind);
-          return (
-            <TouchableHighlight 
+          return (<View style={{flex: 1, flexDirection: 'row'}}>
+         
+            <TouchableHighlight style={{width: 100}}
               onPress={() => this.props.navigation.navigate('KindNavigator', { kind })}
             >
               <Text  key={kind.idkind}> {kind.naam}</Text>
             </TouchableHighlight>
+       
+            <KindSlider kind={kind}/>
+           
+       
+            </View>
+          
          );
+        
         })}
         </ScrollView>
         )

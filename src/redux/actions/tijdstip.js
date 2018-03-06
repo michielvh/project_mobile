@@ -6,8 +6,9 @@
         
         idtijdstip,
         dosis,
+        tijdstip
         //Nakijken of dit nu moet of bij het opvragen
-        tijdstip:date(tijdstip)
+         /* :date(tijdstip) */
         
       }
     };
