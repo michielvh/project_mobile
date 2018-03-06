@@ -48,6 +48,9 @@ class Login extends Component {
         });
         console.log(Date.now());
         console.log(xx.valueOf());
+        console.log(new Date(xx));
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate
+        //CHECK VOOR CONVERSION EN DAN DATE.UTC(JAAR,MAAND-1,DAG,...)
       }
     
         //////////////////////
