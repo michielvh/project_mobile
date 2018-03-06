@@ -5,6 +5,7 @@ import { logout } from '../redux/actions/auth';
 import { addKinderen } from '../redux/actions/kind';
 import { addTakken } from '../redux/actions/tak';
 import { addUser } from '../redux/actions/user';
+import RNLocalNotifications from 'react-native-local-notifications';
 
 //import  Groep  from './Groep';
 import  Tak  from './Tak';
@@ -29,6 +30,8 @@ class Secured extends Component {
       //  var headers : {
         //    'Authorization': this.props.token
         //}
+        RNLocalNotifications.createNotification(1, 'Some text', '2018-03-06 03:58', 'default');
+
         NetInfo.isConnected.fetch().then(isConnected => {
             console.log(this.state.username);
             if (isConnected) {
@@ -67,7 +70,8 @@ class Secured extends Component {
     render() {
          ///////////////
        console.log(this.state.takken);
-      
+       RNLocalNotifications.createNotification(2, 'Some text', '2018-03-06 04:15', 'silence');
+      // RNLocalNotifications.createNotification(2);
         ////////////
         return (
             <ScrollView style={{padding: 20}}>

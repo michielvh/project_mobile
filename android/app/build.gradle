@@ -144,6 +144,8 @@ dependencies {
     compile ('com.google.android.gms:play-services-gcm:8.1.0') {
         force = true;
     }
+compile project(':reactnativenotifications')
+compile project(':react-native-local-notifications')
 }
 
 // Run this once to be able to run the application with BUCK

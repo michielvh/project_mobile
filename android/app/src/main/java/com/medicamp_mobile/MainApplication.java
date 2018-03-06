@@ -8,9 +8,10 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-
+import com.wix.reactnativenotifications.RNNotificationsPackage;
 import java.util.Arrays;
 import java.util.List;
+import com.github.wumke.RNLocalNotifications.RNLocalNotificationsPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -24,7 +25,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativePushNotificationPackage()
+            new ReactNativePushNotificationPackage(),
+            new RNLocalNotificationsPackage(),
+            new RNNotificationsPackage(MainApplication.this)
       );
     }
 

@@ -1,4 +1,6 @@
 package com.medicamp_mobile;
+import android.app.NotificationManager;
+import android.content.Context;
 
 import com.facebook.react.ReactActivity;
 
@@ -11,5 +13,11 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "Medicamp_Mobile";
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nMgr.cancelAll();
     }
 }
