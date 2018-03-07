@@ -9,12 +9,12 @@ import Groep from '../components/Groep'
 class OverviewPage extends Component {
    
     render() {
-        {if(this.props.groepen!=null){
+        {if(this.props.role!=1){
         return (
 
             <ScrollView>
-               
-               <Groep navigation={this.props.navigation}/>
+                                   <Tak navigation={this.props.navigation} /> 
+
               
              </ScrollView>
         ); }else{
@@ -22,8 +22,8 @@ class OverviewPage extends Component {
 
                 <ScrollView>
                    
-                  
-                    <Tak navigation={this.props.navigation} /> 
+                   <Groep navigation={this.props.navigation}/>
+
               
               
                  </ScrollView>
@@ -33,10 +33,18 @@ class OverviewPage extends Component {
 }
 }
 const mapStateToProps = (state) => {
+    if(state.user.users.login.role!=1){
+        return {
+            username: state.auth.username,
+            takken:state.tak.takken[0].takken,
+            role:state.user.users.login.role
+            }}else{
     return {
         username: state.auth.username,
         takken:state.tak.takken[0].takken,
-        groepen:state.groep.groepen[0].groepen/* 
+       groepen:state.groep.groepen[0].groepen,
+       role:state.user.users.login.role}
+        /* 
         kinderen:state.kind.kinderen,
         user:state.user.users */
     };

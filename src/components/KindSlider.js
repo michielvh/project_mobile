@@ -44,21 +44,21 @@ import  PushNotification  from 'react-native-push-notification';
                    var minutes=date3.slice(14,16);
                     var xxx = new Date(Date.UTC(jaar, (maand-1), dag, (hours-1), minutes, 0)); */
 
-                  date3="06/03/2018 23:33";
-                    var dag = date3.slice(1, 2);
-                    var maand = date3.slice(4, 5);
-                     var jaar = date3.slice(7, 10); 
-                     var uur = date3.slice(12, 13);
+                  date3="07/03/2018 08:22";
+                    var dag = date3.slice(0, 2);
+                    var maand = date3.slice(3, 5);
+                     var jaar = date3.slice(6, 10); 
+                     var uur = date3.slice(11, 13);
                      var minutes=date3.slice(14,16);
                      var xxx = new Date(Date.UTC(int(jaar), int(maand)-1, int(dag), int(uur)-1, int(minutes), 0));
 
                     PushNotification.localNotificationSchedule({
-                        id: tijdstip.idtijstip,
+                        id: tijdstip.idtijdstip,
                         message:this.props.kind.naam + ' heeft ' +  tijdstip.dosis + ' ' + medicatie.naam + ' nodig',
                         date:/*  new Date( tijdstip.tijdstip) */  xxx,
                         soundName: 'pillen.mp3'
                       });
-                      console.log(tijdstip.idtijdstip);
+                      console.log(xxx);
                 }
            }   }else{
                 console.log('false');
@@ -69,7 +69,7 @@ import  PushNotification  from 'react-native-push-notification';
                     for(let tijdstip of medicatie.tijdstippen){
                         console.log('false3');
         
-                        PushNotification.cancelLocalNotifications({id:  tijdstip.idtijstip});
+                        PushNotification.cancelLocalNotifications({id: tijdstip.idtijdstip});
                     }
               
         
