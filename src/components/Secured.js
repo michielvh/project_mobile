@@ -28,11 +28,7 @@ class Secured extends Component {
 
     componentDidMount() {
         console.log(this.props.token);
-      //  var headers : {
-        //    'Authorization': this.props.token
-        //}
-        RNLocalNotifications.createNotification(1, 'Some text', '2018-03-06 03:58', 'default');
-
+     
         NetInfo.isConnected.fetch().then(isConnected => {
             console.log(this.state.username);
             if (isConnected) {
@@ -73,9 +69,7 @@ class Secured extends Component {
     render() {
          ///////////////
        console.log(this.state.takken);
-       RNLocalNotifications.createNotification(2, 'Some text', '2018-03-06 04:15', 'silence');
-      // RNLocalNotifications.createNotification(2);
-        ////////////
+     
         return (
             <ScrollView style={{padding: 20}}>
                 <Text style={{fontSize: 27}}>

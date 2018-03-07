@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, Button,View } from 'react-native';
+import { ScrollView, Text, TouchableHighlight, Button,View, Alert } from 'react-native';
 import Ziekte from '../components/Ziekte'
 class KindZiektePage extends Component {
     
@@ -24,11 +24,27 @@ class KindZiektePage extends Component {
                     { this.ziektes(kind.ziektes).map((ziekte) => {
                
             return (
-                <View>
+           <TouchableHighlight onPress={() => Alert.alert(
+            ziekte.naam, 'Symptomen: '+ziekte.symptomen+'\n'+'Behandeling: '+ziekte.behandeling,
+            [
+             /*  {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}, */
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            { cancelable: false }
+          )} 
+        //HIER ALERT ONPRESS MET INFO VOOGD
+        >
+          <Text  key={ziekte.idziekte}> {ziekte.naam}</Text>
+        </TouchableHighlight>
+           
+           
+           
+                /*  <View>
 
            
                <Ziekte ziekte={ziekte} />
-               </View>
+               </View> */
            );
           })}
             </ScrollView>

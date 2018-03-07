@@ -8,7 +8,7 @@ import  PushNotification  from 'react-native-push-notification';
     constructor(props) {
         super(props);
         this.state = {
-            
+            value: false
          };
     }
 
@@ -16,7 +16,7 @@ import  PushNotification  from 'react-native-push-notification';
       const int=(x) => Number.parseInt(x);
         console.log(val);
 
-
+this.setState({value: val});
 
           if (val===true){
               console.log('true');
@@ -85,7 +85,7 @@ import  PushNotification  from 'react-native-push-notification';
       <View>
  
  <Switch
-         value={false}
+         value={this.state.value}
          onValueChange={(val) => this.fixNotifixationKind(val)}
          disabled={false}
          activeText={'On'}
