@@ -21,21 +21,32 @@ import Tak  from './Tak';
     return (
       <View>
        <Text style={styles.titleText} >Groepen: </Text>
+      
         { this.groepen().map((groep) => {
           return (
+            <View>
             <TouchableHighlight 
               onPress={() => this.props.navigation.navigate('GroepDetails', { groep })}
             >
-              <Text key={groep.idgroep}> {groep.naam}</Text>
-             
+              <Text style={styles.titleText} key={groep.idgroep}> {groep.naam}</Text>
+              </TouchableHighlight>  
               {   this.takken().map((tak) => {
                  var x = [];
-                
+                 const int=(x) => Number.parseInt(x);
         //LIJST MET LIJSTITEMS VAN MAKEN, MAKKELIJKER VOOR OPMAAK
-                  if( groep.takken.find(tak.idtak)){
-                   <Tak tak={tak}/*of tak.idtak*//>}
+        for(let t of groep.takkenids){
+          console.log(int(t));
+          console.log(t[0]);
+          
+          console.log(tak.idtak);
+                  if( int(t)===tak.idtak){return(
+                   <Tak navigation={this.props.navigation} tak={tak}/*of tak.idtak*//>
+                  );
+                  }
+                }
                    })}
-            </TouchableHighlight>
+            
+            </View>
          );
         })}
       </View>
@@ -45,8 +56,8 @@ import Tak  from './Tak';
 
 const mapStateToProps = (state) => {
   return {
-    groepen: state.groepen.groepen,
-    takken: state.tak.takken
+    groepen: state.groep.groepen[0].groepen,
+    takken: state.tak.takken[0].takken
   };
 };
 

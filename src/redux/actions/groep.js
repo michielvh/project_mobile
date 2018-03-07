@@ -1,5 +1,5 @@
 
- export const addGroep = (idgroep,naam,plaats,postcode,straat,huisnr,bus,email,link,takken) => {
+ export const addGroep = (idgroep,naam,plaats,postcode,straat,huisnr,bus,email,link,takkenids) => {
     return {
       type: 'ADD_GROEP',
       payload: {
@@ -13,8 +13,18 @@
         bus,
         email,
         link,
-        takken
+        takkenids
         
       }
     };
+  }
+    export const addGroepen = (groepen) => {
+      return {
+        type: 'ADD_GROEPEN',
+        payload: {
+          
+         groepen
+          
+        }
+      };
 }

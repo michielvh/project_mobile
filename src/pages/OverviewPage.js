@@ -3,28 +3,40 @@ import { ScrollView, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import Tak from '../components/Tak'
+import Groep from '../components/Groep'
+
 /*  */
 class OverviewPage extends Component {
    
     render() {
+        {if(this.props.groepen!=null){
         return (
+
             <ScrollView>
                
-                <Tak navigation={this.props.navigation} />
-            {/*     <Trips navigation={this.props.navigation} />
-                <Button 
-                    title='Add a new trip' 
-                    onPress={() => this.props.navigation.navigate('AddTrip')} 
-                    navigation={this.props.navigation}
-                /> */}
-            </ScrollView>
-        );
+               <Groep navigation={this.props.navigation}/>
+              
+             </ScrollView>
+        ); }else{
+            return (
+
+                <ScrollView>
+                   
+                  
+                    <Tak navigation={this.props.navigation} /> 
+              
+              
+                 </ScrollView>
+            );
+        }
     }
+}
 }
 const mapStateToProps = (state) => {
     return {
         username: state.auth.username,
-        takken:state.tak.takken,/* 
+        takken:state.tak.takken[0].takken,
+        groepen:state.groep.groepen[0].groepen/* 
         kinderen:state.kind.kinderen,
         user:state.user.users */
     };

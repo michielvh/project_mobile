@@ -13,7 +13,16 @@ import { connect } from 'react-redux';
     }
   render() {
    
-    
+    {if(this.props.tak!=null){
+      return(<View>
+ <TouchableHighlight 
+              onPress={() => this.props.navigation.navigate('TakDetails', this.props.tak )}
+            >
+              <Text key={this.props.tak.idtak}> {this.props.tak.naam}</Text>
+            </TouchableHighlight>
+
+      </View>);
+    }else{
       
     return (
       <View>
@@ -33,7 +42,8 @@ import { connect } from 'react-redux';
       </View>
     );
   }
-}
+  }
+}}
 
 const mapStateToProps = (state) => {
   return {

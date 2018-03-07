@@ -4,6 +4,7 @@ import { ScrollView, Text, NetInfo, View, Button } from 'react-native';
 import { logout } from '../redux/actions/auth';
 import { addKinderen } from '../redux/actions/kind';
 import { addTakken } from '../redux/actions/tak';
+import { addGroepen } from '../redux/actions/groep';
 import { addUser } from '../redux/actions/user';
 import RNLocalNotifications from 'react-native-local-notifications';
 
@@ -36,7 +37,7 @@ class Secured extends Component {
             console.log(this.state.username);
             if (isConnected) {
                 console.log(this.state.password);
-                fetch('https://medicamp-so.appspot.com/api/'+ this.props.username+'/mobiel', {method: 'GET', headers : {
+                fetch('https://test-dot-medicamp-so.appspot.com/api/'+ this.props.username+'/mobiel', {method: 'GET', headers : {
                         'Authorization': this.props.token
                     } })
                 .then((response) => response.json())
@@ -54,7 +55,9 @@ class Secured extends Component {
         }
 
         initStatee(){
-            
+            if(this.state.takken[0].groepen!=null){
+                this.props.addGroepen(this.state.takken[0].groepen);
+            }
             this.props.addKinderen(this.state.takken[0].kinderen);
             this.props.addTakken(this.state.takken[0].takken);
             this.props.addUser(this.state.takken[0].user);
@@ -109,6 +112,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onLogout: () => { dispatch(logout()); },
         addKinderen:(kinderen) => { dispatch(addKinderen(kinderen)); },
+        addGroepen:(groepen) => { dispatch(addGroepen(groepen)); },
         addTakken:(takken) => { dispatch(addTakken(takken)); },
         addUser:(user) => { dispatch(addUser(user)); }
 

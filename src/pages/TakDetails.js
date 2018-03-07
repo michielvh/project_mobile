@@ -5,8 +5,7 @@ import { Switch } from 'react-native-switch';
 import  PushNotification  from 'react-native-push-notification';
 import KindSlider from '../components/KindSlider'
 class TakDetails extends Component {
-   
-    kinderenVanTak(tak) {
+     kinderenVanTakT(tak) {
         let lijst=[];
         console.log(tak);
         for(var x in this.props.kinderen){
@@ -23,11 +22,39 @@ class TakDetails extends Component {
         }
         console.log(lijst);
       return lijst;
+      } 
+    kinderenVanTak(kinderenids) {
+        let lijst=[];
+        
+        for(var x in this.props.kinderen){
+          var kind= this.props.kinderen[x];
+          console.log(kind);
+            for(let y in kinderenids){
+                var kindid=kinderenids[y];
+                console.log(kindid);
+                if(kindid==kind.idkind){
+                    lijst.push(kind);
+                    console.log(kind);
+                }
+            }
+        }
+        console.log(lijst);
+      return lijst;
       }
-      kinderen(tak){
-          let x=this.kinderenVanTak(tak);
-          console.log(x);
-        return Object.keys(x).map(key => x[key]);
+      kinderen(){
+        const { params } = this.props.navigation.state;
+        const tak = params ? params.tak : null;
+        const kinderenids = params ? params.kinderenids : null;
+        var l=[];
+          if(tak!=null){
+            let x=this.kinderenVanTakT(tak);
+            l=x;
+        }else{
+            let y =this.kinderenVanTak(kinderenids);
+            l=y;
+        }
+         
+        return Object.keys(l).map(key => l[key]);
       }
 
      
@@ -37,13 +64,14 @@ class TakDetails extends Component {
 
     render() {
         console.log(this.props.navigation.state);
-        const { params } = this.props.navigation.state;
+    /*     const { params } = this.props.navigation.state;
     const tak = params ? params.tak : null;
+    const kinderenids = params ? params.kinderenids : null;
     console.log(this.props.kinderen);
-    console.log(tak);
+    console.log(tak); */
     return(
         <ScrollView>
-        { this.kinderen(tak).map((kind) => {
+        { this.kinderen().map((kind) => {
              console.log(kind);
           return (<View style={{flex: 1, flexDirection: 'row'}}>
          

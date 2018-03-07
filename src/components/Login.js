@@ -92,7 +92,7 @@ class Login extends Component {
         ///////////////
           fixToken(){
             var x='';
-            axios.post('https://medicamp-so.appspot.com/api/auth/login', {
+            axios.post('https://test-dot-medicamp-so.appspot.com/api/auth/login', {
                 login: this.state.username,
                 password: this.state.password
             }).then((response)=>{
