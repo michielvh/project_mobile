@@ -35,7 +35,7 @@ import  PushNotification  from 'react-native-push-notification';
                   console.log(date3);
                  
                   //var date=new Date(date3);
-                 
+                 console.log(tijdstip.idtijdstip);
 
                 /*   var dag = date3.slice(0, 2);
                   var maand = date3.slice(3, 5);
@@ -44,7 +44,7 @@ import  PushNotification  from 'react-native-push-notification';
                    var minutes=date3.slice(14,16);
                     var xxx = new Date(Date.UTC(jaar, (maand-1), dag, (hours-1), minutes, 0)); */
 
-                  date3="07/03/2018 08:22";
+              //    date3="07/03/2018 08:22";
                     var dag = date3.slice(0, 2);
                     var maand = date3.slice(3, 5);
                      var jaar = date3.slice(6, 10); 
