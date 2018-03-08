@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { ScrollView, Text, TextInput, NetInfo, View, Button } from 'react-native';
 import { login } from '../redux/actions/auth';
 import { fixTokenAction } from '../redux/actions/auth';
-
+import { addKinderen } from '../redux/actions/kind';
+import { addTakken } from '../redux/actions/tak';
+import { addGroepen } from '../redux/actions/groep';
+import { addUser } from '../redux/actions/user';
 import NewTak from '../addings/NewTak';
 import { getLijstTakkenFromAPI } from '../methodes/tak';
 import axios from 'axios';
@@ -24,6 +27,7 @@ class Login extends Component {
             takken:[],
             token: ''
         };
+        var sgoe=0;
      /*  var  details = NotificationsAndroid.localNotification({
           message: 'hello',
           //  fireDate: "2018-03-06 01:20:00",
@@ -124,7 +128,10 @@ class Login extends Component {
             });
          
         }).then((response) => {
-            this.props.onLogin(this.state.username, this.state.password,this.state.token);
+            this.fixData();
+
+        }).then(() => {
+
         });
     }});
             /////////////
@@ -142,14 +149,55 @@ class Login extends Component {
         e.preventDefault();
     
     }
+
+    fixData() {
+        console.log(this.props.token);
+     
+        NetInfo.isConnected.fetch().then(isConnected => {
+            console.log(this.state.username);
+            if (isConnected) {
+                console.log(this.state.password);
+                fetch('https://medicamp-so.appspot.com/api/'+ this.state.username+'/mobiel_test', {method: 'GET', headers : {
+                        'Authorization': this.state.token
+                    } })
+                .then((response) => response.json())
+                .then((responseData) => {
+                    this.setState({ takken: responseData
+                        
+                         });
+                }).then(() => {
+                    this.initStatee();
+                });
+               
+               
+            }
+          
+        }); 
+       
+        }
+
+        initStatee(){
+            if(this.state.takken.groepen!=null){
+                this.props.addGroepen(this.state.takken.groepen);
+            }
+            this.props.addKinderen(this.state.takken.kinderen);
+            this.props.addTakken(this.state.takken.takken);
+            this.props.addUser(this.state.takken.user);
+        }
  
     toggleRoute (e) {
         let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
         this.setState({ route: alt });
         e.preventDefault();
     }
- 
+ componentWillReceiveProps(user){
+   // if(this.props.user!=null){
+        this.props.onLogin(this.state.username, this.state.password,this.state.token);
+
+  //}
+ }
     render () {
+      
         let alt = (this.state.route === 'Login') ? 'SignUp' : 'Login';
         /* var x = new Date(Date.UTC(118, 3, 6, 5, 46, 0));
         var myVar = x.valueOf(); 
@@ -250,7 +298,9 @@ class Login extends Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         isLoggedIn: state.auth.isLoggedIn,
-        token:state.auth.token
+        token:state.auth.token,
+        user:state.user.users
+
     };
 }
  
@@ -258,7 +308,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onLogin: (username, password, token) => { dispatch(login(username, password, token)); },
         onGetToken: (username, password) => { dispatch(fixTokenAction(username, password)); },
-      
+        addKinderen:(kinderen) => { dispatch(addKinderen(kinderen)); },
+        addGroepen:(groepen) => { dispatch(addGroepen(groepen)); },
+        addTakken:(takken) => { dispatch(addTakken(takken)); },
+        addUser:(user) => { dispatch(addUser(user))}
     }
 }
  

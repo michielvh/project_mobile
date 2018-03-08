@@ -18,6 +18,7 @@ import Login from './src/components/Login';
 import Secured from './src/components/Secured';
 
 import Navigatorr from './src/navigation/Navigator';
+import OverviewPage from './src/pages/OverviewPage';
 
 
 
@@ -29,7 +30,7 @@ class App extends Component{
 
         if (this.props.isLoggedIn) {
          // return <Secured />;
-          return <Navigatorr/>
+          return <OverviewPage/>
         } else {
             return <Login />;
         }
