@@ -19,7 +19,7 @@ class KindDieetPage extends Component {
                
             return (
               <TouchableHighlight  key={dieet.iddieet}  onPress={() => Alert.alert(
-                dieet.naam, 'Opmerking: '+dieet.opmerkingen,
+                dieet.naam, 'Opmerking: '+dieet.opmerking,
                 [
                  /*  {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
                   {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}, */
@@ -29,7 +29,7 @@ class KindDieetPage extends Component {
               )} 
              
               >
-                <Text  key={dieet.iddieet}> {dieet.naam}</Text>
+                <Text style={{fontSize: 18, fontWeight: 'bold',margin: 3}} key={dieet.iddieet}> {dieet.naam}</Text>
               </TouchableHighlight>
            );
           })}

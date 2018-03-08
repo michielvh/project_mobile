@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, View, Text, TouchableHighlight, Button } from 'react-native';
+import { ScrollView, View, Text, TouchableHighlight, Button,StyleSheet } from 'react-native';
 import { Switch } from 'react-native-switch';
 import  PushNotification  from 'react-native-push-notification';
 import KindSlider from '../components/KindSlider'
@@ -53,12 +53,12 @@ toListt(map){
 
     return(
         <ScrollView>
-       <Text>Totaal aantal kinderen in de tak: {kinderenids.length}</Text>
-       <Text>lijst dieeten:</Text>
+       <Text style={styles.dinges}>Totaal aantal kinderen in de tak: {kinderenids.length}</Text>
+       <Text style={styles.dinges}>lijst dieeten:</Text>
        
         {lijst2.map((x) => {
             return(
-            <Text>{x.naam}  {x.aantal}</Text>
+            <Text key={x.naam}>{x.naam}  {x.aantal}</Text>
             )
         })}
 
@@ -74,3 +74,15 @@ const mapStateToProps = (state) => {
 };
  
 export default connect(mapStateToProps)(TakTotalen);
+const styles = StyleSheet.create({
+
+    dinges: {
+        fontSize: 18, 
+       // alignItems: 'center',
+        fontWeight: 'bold',
+        width: 600,
+        margin: 3,
+       // textDecorationLine: 'underline',
+    },
+    
+  })

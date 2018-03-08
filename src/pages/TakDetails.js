@@ -76,13 +76,13 @@ class TakDetails extends Component {
              console.log(kind);
           return (<View key={kind.idkind} style={{flex: 1, flexDirection: 'row'}}>
          
-            <TouchableHighlight style={{width: 100}}
+            <TouchableHighlight style={{width: 280}}
               onPress={() => this.props.navigation.navigate('KindNavigator', { kind })}
             >
-              <Text  key={kind.idkind}> {kind.naam}</Text>
+              <Text style={{fontSize: 18, fontWeight: 'bold',margin: 3}} key={kind.idkind}>{kind.voornaam} {kind.naam}</Text>
             </TouchableHighlight>
        
-            <KindSlider kind={kind}/>
+            <KindSlider style={{width: 100}} kind={kind}/>
            
        
             </View>

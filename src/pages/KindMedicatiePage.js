@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, Button, Alert } from 'react-native';
+import { ScrollView, Text, TouchableHighlight, Button, Alert,StyleSheet } from 'react-native';
 
 class KindMedicatiePage extends Component {
     
@@ -33,7 +33,7 @@ class KindMedicatiePage extends Component {
               )} 
               //HIER ALERT ONPRESS MET INFO VOOGD
               >
-                <Text  key={medicatie.idmedicatie}> {medicatie.naam}</Text>
+                <Text style={styles.dinges}  key={medicatie.idmedicatie}> {medicatie.naam}</Text>
               </TouchableHighlight>
            );
           })}
@@ -49,3 +49,15 @@ const mapStateToProps = (state) => {
 };
  
 export default connect(mapStateToProps)(KindMedicatiePage);
+const styles = StyleSheet.create({
+
+  dinges: {
+      fontSize: 18, 
+     // alignItems: 'center',
+      fontWeight: 'bold',
+      width: 600,
+      margin: 3,
+     // textDecorationLine: 'underline',
+  },
+  
+})

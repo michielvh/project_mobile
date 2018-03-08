@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
  <TouchableHighlight 
               onPress={() => this.props.navigation.navigate('TakTabs', this.props.tak )}
             >
-              <Text key={this.props.tak.idtak}> {this.props.tak.naam}</Text>
+              <Text style={{fontSize: 18,margin: 5 }} key={this.props.tak.idtak}>- {this.props.tak.naam}</Text>
             </TouchableHighlight>
 
       </View>);

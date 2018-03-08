@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, Button,ListView, FlatList,Alert } from 'react-native';
+import { ScrollView, Text, TouchableHighlight, Button,ListView, FlatList,Alert,StyleSheet } from 'react-native';
 
 class KindVoogdPage extends Component {
 voogden(x){
@@ -21,7 +21,7 @@ return x;
           return (
             <TouchableHighlight key={voogd.idvoogd}
                onPress={() => Alert.alert(
-                voogd.naam, 'Telefoon: '+voogd.tel+'\n'+'Woonplaats: '+voogd.huisnr+ ' '+ voogd.straat+ '\nte:     '+ 
+                voogd.naam, 'Telefoon:        '+voogd.tel+'\n'+'Woonplaats:  '+voogd.huisnr+ ' '+ voogd.straat+ '\nte:                    '+ 
                 voogd.postcode +' ' +voogd.plaats +'\n',
                 [
                  /*  {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
@@ -32,7 +32,7 @@ return x;
               )} 
             //HIER ALERT ONPRESS MET INFO VOOGD
             >
-              <Text  key={voogd.idvoogd}> {voogd.naam}</Text>
+              <Text style={styles.dinges} key={voogd.idvoogd}> {voogd.voornaam} {voogd.naam} </Text>
             </TouchableHighlight>
          );
         })}
@@ -52,3 +52,15 @@ const mapStateToProps = (state) => {
 };
  
 export default connect(mapStateToProps)(KindVoogdPage);
+const styles = StyleSheet.create({
+
+  dinges: {
+      fontSize: 18, 
+     // alignItems: 'center',
+      fontWeight: 'bold',
+      width: 600,
+      margin: 3,
+     // textDecorationLine: 'underline',
+  },
+  
+})

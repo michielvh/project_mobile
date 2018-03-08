@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, Button,View, Alert } from 'react-native';
+import { ScrollView, Text, TouchableHighlight, Button,View, Alert,StyleSheet } from 'react-native';
 import Ziekte from '../components/Ziekte'
 class KindZiektePage extends Component {
     
@@ -35,7 +35,7 @@ class KindZiektePage extends Component {
           )} 
         //HIER ALERT ONPRESS MET INFO VOOGD
         >
-          <Text  key={ziekte.idziekte}> {ziekte.naam}</Text>
+          <Text style={styles.dinges} key={ziekte.idziekte}> {ziekte.naam}</Text>
         </TouchableHighlight>
            
            
@@ -59,3 +59,15 @@ const mapStateToProps = (state) => {
 };
  
 export default connect(mapStateToProps)(KindZiektePage);
+const styles = StyleSheet.create({
+
+  dinges: {
+      fontSize: 18, 
+     // alignItems: 'center',
+      fontWeight: 'bold',
+      width: 600,
+      margin: 3,
+     // textDecorationLine: 'underline',
+  },
+  
+})

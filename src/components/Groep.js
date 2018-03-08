@@ -20,16 +20,16 @@ import Tak  from './Tak';
     
       
     return (
-      <View>
+      <View >
        <Text style={styles.titleText} >Groepen: </Text>
       
         { this.groepen().map((groep) => {
           return (
-            <View key={groep.idgroep}>
+            <View  key={groep.idgroep}>
             <TouchableHighlight 
               onPress={() => this.props.navigation.navigate('GroepDetails', { groep })}
             >
-              <Text style={styles.titleText} key={groep.idgroep}> {groep.naam}</Text>
+              <Text  style={styles.subText} key={groep.idgroep}>{groep.naam}</Text>
               </TouchableHighlight>  
               {   this.takken().map((tak) => {
                  var x = [];
@@ -70,10 +70,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color: '#841584',
+    width: 350,
   },
   titleText: {
-    fontSize: 20, 
+   fontSize: 35, 
+    alignItems: 'center',
     fontWeight: 'bold',
-  }
-  
+    width: 600,
+    margin: 10,
+    textDecorationLine: 'underline',
+
+  },
+  subText: {
+   fontSize: 28, 
+   // textAlign: 'left',
+    //alignItems: 'left',
+    color: '#841584',
+    //width: 350,
+  //  margin: 10,
+    textDecorationLine: 'underline',
+  //  width: 600,
+  },
+  view: {
+    //fontSize: 28, 
+     alignItems: 'center',
+     //fontWeight: 'bold',
+     width: 600,
+    // margin: 10,
+ 
+   },
 });
