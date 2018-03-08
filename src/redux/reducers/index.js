@@ -16,6 +16,7 @@ import user from './user';
 import user_tak from './user_tak';
 import voogd from './voogd';
 import ziekte from './ziekte';
+import slider from './slider';
 
 
 export default combineReducers({
@@ -35,5 +36,6 @@ export default combineReducers({
   user,
   user_tak,
   voogd,
-  ziekte
+  ziekte,
+  slider
 });

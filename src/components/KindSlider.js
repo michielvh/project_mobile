@@ -3,7 +3,7 @@ import { Text, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Switch } from 'react-native-switch';
 import  PushNotification  from 'react-native-push-notification';
-
+import { addSliderKind } from '../redux/actions/slider';
  class KindSlider extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ import  PushNotification  from 'react-native-push-notification';
     fixNotifixationKind(val){
       const int=(x) => Number.parseInt(x);
         console.log(val);
-
+this.props.changeValueStore(val,this.props.kind.idkind);
 this.setState({value: val});
 
           if (val===true){
@@ -78,14 +78,13 @@ this.setState({value: val});
         }
 
   render() {
-      console.log(this.props);
-    
-      
+      console.log(this.props.sliderValue)
+    var x = this.props.sliderValue[this.props.kind.idkind] ? this.props.sliderValue[this.props.kind.idkind] : false;
     return (
       <View>
  
  <Switch
-         value={this.state.value}
+         value={x}
          onValueChange={(val) => this.fixNotifixationKind(val)}
          disabled={false}
          activeText={'On'}
@@ -107,11 +106,17 @@ this.setState({value: val});
 
 const mapStateToProps = (state) => {
   return {
-
+    sliderValue: state.slider.sliders
   };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeValueStore: (val,idkind) => { dispatch(addSliderKind(val,idkind)); },
+    
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(KindSlider);
 
-export default connect(mapStateToProps)(KindSlider);
 
 const styles = StyleSheet.create({
 
