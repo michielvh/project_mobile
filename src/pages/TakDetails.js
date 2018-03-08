@@ -54,7 +54,8 @@ class TakDetails extends Component {
             l=y;
         }
          
-        return Object.keys(l).map(key => l[key]);
+      //  return Object.keys(l).map(key => l[key]);
+        return l;
       }
 
      
@@ -73,7 +74,7 @@ class TakDetails extends Component {
         <ScrollView>
         { this.kinderen().map((kind) => {
              console.log(kind);
-          return (<View style={{flex: 1, flexDirection: 'row'}}>
+          return (<View key={kind.idkind} style={{flex: 1, flexDirection: 'row'}}>
          
             <TouchableHighlight style={{width: 100}}
               onPress={() => this.props.navigation.navigate('KindNavigator', { kind })}

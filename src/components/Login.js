@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, Text, TextInput, NetInfo, View, Button } from 'react-native';
 import { login } from '../redux/actions/auth';
+import { fixTokenAction } from '../redux/actions/auth';
+
 import NewTak from '../addings/NewTak';
 import { getLijstTakkenFromAPI } from '../methodes/tak';
 import axios from 'axios';
@@ -39,7 +41,7 @@ class Login extends Component {
           date: new Date(Date.now()+(5 * 1000))});
  */
     }
-     showDelayedNotification () {
+    /*  showDelayedNotification () {
         
         var xx = new Date(Date.UTC(2018, 2, 6, 11, 19, 40)); //-1 maand (januari 1970)
        // var myVarr = xx.valueOf();
@@ -66,10 +68,10 @@ class Login extends Component {
        // console.log(date1);
         console.log(Date.now());
         console.log(xx.valueOf());
-        console.log(new Date(xx));
+        console.log(new Date(xx)); */
         //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate
         //CHECK VOOR CONVERSION EN DAN DATE.UTC(JAAR,MAAND-1,DAG,...)
-      }
+     // }
     
         //////////////////////
 
@@ -90,22 +92,44 @@ class Login extends Component {
           }  */
 
         ///////////////
-          fixToken(){
+     /*      fixToken(){
             var x='';
-            axios.post('https://test-dot-medicamp-so.appspot.com/api/auth/login', {
+            axios.post('https://medicamp-so.appspot.com/api/auth/login', {
                 login: this.state.username,
                 password: this.state.password
             }).then((response)=>{
               // x= response.headers.authorization;
                this.setState({token: response.headers.authorization})
             });
-          }
-
+          } */
+        
 
         userLogin (e) {
+            NetInfo.isConnected.fetch().then(isConnected => {
+                console.log(this.state.username);
+                if (isConnected) {
+            axios.post('https://medicamp-so.appspot.com/api/auth/login', {
+            login: this.state.username,
+            password: this.state.password
+        })
+        .then((response) => {
+           this.setState({token: response.headers.authorization})
+           
+        })
+        .then((response) => {
+            axios.get('https://medicamp-so.appspot.com/api/'+this.state.username+'/mobiel_test', {
+                headers: {
+                    Authorization: this.state.token
+                }
+            });
+         
+        }).then((response) => {
+            this.props.onLogin(this.state.username, this.state.password,this.state.token);
+        });
+    }});
             /////////////
         var fff;
-        
+     //   this.props.onGetToken(this.state.username, this.state.password);
        console.log(this.state.route);
         console.log(this.state.username);
         
@@ -113,7 +137,7 @@ class Login extends Component {
                         
         console.log(this.state.token);
         //console.log(x);
-        this.props.onLogin(this.state.username, this.state.password,this.state.token);
+       //this.props.onLogin(this.state.username, this.state.password,this.state.token); //// HIER this.STATE.token
        console.log(this.state.takken);
         e.preventDefault();
     
@@ -215,10 +239,8 @@ class Login extends Component {
                     value={this.state.password} 
                     onChangeText={(text) => this.setState({ password: text })} />
                 <View style={{margin: 7}}/>
-                <Button onPress={(e) => this.fixToken()} title='Fix Token' />
-                <Button onPress={() => this.showDelayedNotification()} title='Show notification after 5 seconds'/>
                 <Button onPress={(e) => this.userLogin(e)} title={this.state.route} />
-                <Text style={{fontSize: 16, color: 'blue'}} onPress={(e) => this.toggleRoute(e)}>{alt}</Text>
+              
             </ScrollView>
         );
     }
@@ -227,13 +249,15 @@ class Login extends Component {
  
 const mapStateToProps = (state, ownProps) => {
     return {
-        isLoggedIn: state.auth.isLoggedIn
+        isLoggedIn: state.auth.isLoggedIn,
+        token:state.auth.token
     };
 }
  
 const mapDispatchToProps = (dispatch) => {
     return {
         onLogin: (username, password, token) => { dispatch(login(username, password, token)); },
+        onGetToken: (username, password) => { dispatch(fixTokenAction(username, password)); },
       
     }
 }

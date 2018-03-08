@@ -20,6 +20,14 @@ export default function reducer(state = defaultState, action) {
                 username: '',
                 password: ''
             });
+            case 'RECEIVE_TOKEN':
+            return Object.assign({}, state, { 
+                isLoggedIn: true,
+                username: action.payload.username,
+                password: action.payload.password,
+                token: action.payload.token
+            });
+
         default:
             return state;
     }

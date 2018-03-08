@@ -33,7 +33,7 @@ class Secured extends Component {
             console.log(this.state.username);
             if (isConnected) {
                 console.log(this.state.password);
-                fetch('https://test-dot-medicamp-so.appspot.com/api/'+ this.props.username+'/mobiel', {method: 'GET', headers : {
+                fetch('https://medicamp-so.appspot.com/api/'+ this.props.username+'/mobiel_test', {method: 'GET', headers : {
                         'Authorization': this.props.token
                     } })
                 .then((response) => response.json())
@@ -41,8 +41,10 @@ class Secured extends Component {
                     this.setState({ takken: responseData
                         
                          });
-                })
-                .done(); 
+                }).then(() => {
+                    this.initStatee();
+                });
+               
                
             }
           
@@ -51,12 +53,12 @@ class Secured extends Component {
         }
 
         initStatee(){
-            if(this.state.takken[0].groepen!=null){
-                this.props.addGroepen(this.state.takken[0].groepen);
+            if(this.state.takken.groepen!=null){
+                this.props.addGroepen(this.state.takken.groepen);
             }
-            this.props.addKinderen(this.state.takken[0].kinderen);
-            this.props.addTakken(this.state.takken[0].takken);
-            this.props.addUser(this.state.takken[0].user);
+            this.props.addKinderen(this.state.takken.kinderen);
+            this.props.addTakken(this.state.takken.takken);
+            this.props.addUser(this.state.takken.user);
         }
         
 
