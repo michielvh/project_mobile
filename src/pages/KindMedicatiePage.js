@@ -17,10 +17,10 @@ class KindMedicatiePage extends Component {
         
             return (
               <ScrollView>
-                    { this.medicaties(kind.medicaties).map((medicatie) => {
+                    { kind.medicaties.map((medicatie) => {
                
             return (
-              <TouchableHighlight 
+              <TouchableHighlight key={medicatie.idmedicatie}
                 onPress={() => Alert.alert(
                 'Alert Title',
                medicatie.tijdstippen[0].dosis + ' op ' +  medicatie.tijdstippen[0].tijdstip ,

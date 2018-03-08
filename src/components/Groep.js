@@ -9,7 +9,8 @@ import Tak  from './Tak';
     }
 
   groepen() {
-      return Object.keys(this.props.groepen).map(key => this.props.groepen[key]);
+    //  return Object.keys(this.props.groepen).map(key => this.props.groepen[key]);
+      return this.props.groepen;
     }
     takken() {
         return Object.keys(this.props.takken).map(key => this.props.takken[key]);
@@ -24,7 +25,7 @@ import Tak  from './Tak';
       
         { this.groepen().map((groep) => {
           return (
-            <View>
+            <View key={groep.idgroep}>
             <TouchableHighlight 
               onPress={() => this.props.navigation.navigate('GroepDetails', { groep })}
             >
@@ -40,7 +41,7 @@ import Tak  from './Tak';
           
           console.log(tak.idtak);
                   if( int(t)===tak.idtak){return(
-                   <Tak navigation={this.props.navigation} tak={tak}/*of tak.idtak*//>
+                   <Tak key={tak.idtak} navigation={this.props.navigation} tak={tak}/*of tak.idtak*//>
                   );
                   }
                 }

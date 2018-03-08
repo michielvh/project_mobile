@@ -3,6 +3,7 @@ import OverviewPage from '../pages/OverviewPage';
 import TakDetails from '../pages/TakDetails';
 import KindDetails from '../pages/KindDetails';
 import KindNavigator from '../navigation/KindNavigator';
+import TakTabs from '../navigation/TakTabs';
 
 const TakNavigator = StackNavigator({
     Overview: {
@@ -11,8 +12,8 @@ const TakNavigator = StackNavigator({
             title: 'Overview',
         },
     }, 
-     TakDetails: {
-        screen: TakDetails,
+     TakTabs: {
+        screen: TakTabs,
         navigationOptions: {
             title: 'Tak details',
         },

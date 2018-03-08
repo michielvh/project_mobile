@@ -21,10 +21,10 @@ class KindZiektePage extends Component {
         
             return (
               <ScrollView>
-                    { this.ziektes(kind.ziektes).map((ziekte) => {
+                    { kind.ziektes.map((ziekte) => {
                
             return (
-           <TouchableHighlight onPress={() => Alert.alert(
+           <TouchableHighlight key= {ziekte.idziekte} onPress={() => Alert.alert(
             ziekte.naam, 'Symptomen: '+ziekte.symptomen+'\n'+'Behandeling: '+ziekte.behandeling,
             [
              /*  {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},

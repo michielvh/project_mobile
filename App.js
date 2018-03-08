@@ -19,6 +19,7 @@ import Secured from './src/components/Secured';
 
 import Navigatorr from './src/navigation/Navigator';
 import OverviewPage from './src/pages/OverviewPage';
+import TakNavigator from './src/navigation/TakNavigator';
 
 
 
@@ -30,7 +31,7 @@ class App extends Component{
 
         if (this.props.isLoggedIn) {
          // return <Secured />;
-          return <OverviewPage/>
+          return <TakNavigator/>
         } else {
             return <Login />;
         }

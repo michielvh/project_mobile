@@ -46,13 +46,13 @@ class TakDetails extends Component {
         const tak = params ? params.tak : null;
         const kinderenids = params ? params.kinderenids : null;
         var l=[];
-          if(tak!=null){
+        /*   if(tak!=null){
             let x=this.kinderenVanTakT(tak);
             l=x;
-        }else{
+        } else{*/
             let y =this.kinderenVanTak(kinderenids);
             l=y;
-        }
+       // }
          
       //  return Object.keys(l).map(key => l[key]);
         return l;

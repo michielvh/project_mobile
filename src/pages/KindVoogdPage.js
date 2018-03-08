@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { ScrollView, Text, TouchableHighlight, Button,ListView, FlatList,Alert } from 'react-native';
 
 class KindVoogdPage extends Component {
-    voogden(x){
+voogden(x){
        
-      return Object.keys(x).map(key => x[key]);
+    //  return Object.keys(x).map(key => x[key]);
+return x;
     }
  
 
@@ -15,10 +16,10 @@ class KindVoogdPage extends Component {
       
           return (
             <ScrollView>
-                  { this.voogden(kind.voogden).map((voogd) => {
+                  { kind.voogden.map((voogd) => {
              
           return (
-            <TouchableHighlight 
+            <TouchableHighlight key={voogd.idvoogd}
                onPress={() => Alert.alert(
                 voogd.naam, 'Telefoon: '+voogd.tel+'\n'+'Woonplaats: '+voogd.huisnr+ ' '+ voogd.straat+ '\nte:     '+ 
                 voogd.postcode +' ' +voogd.plaats +'\n',

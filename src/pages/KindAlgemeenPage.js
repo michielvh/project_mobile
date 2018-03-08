@@ -32,8 +32,8 @@ class KindAlgemeenPage extends Component {
             <ScrollView>
             <Text>Naam: {kind.naam}</Text>
             <Text>Voornaam: {kind.voornaam}</Text>
-            <Text>GeboorteDatum:
-            <Timestamp time={r} component={Text} />
+            <Text>GeboorteDatum: {kind.gebdatum}
+           
              </Text>
             
             

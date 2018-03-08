@@ -25,8 +25,11 @@ class OverviewPage extends Component {
             {if(this.props.user.login.role!=1){
             return (
     
-                <ScrollView>
-                                       <Tak navigation={this.props.navigation} /> 
+                <ScrollView>{this.props.takken.map((tak) => {return(
+                    <Tak key={tak.idtak} navigation={this.props.navigation} tak={tak} /> 
+                );
+                })}
+                                      
     
                   
                  </ScrollView>
@@ -35,7 +38,7 @@ class OverviewPage extends Component {
     
                     <ScrollView>
                        
-                       <Groep navigation={this.props.navigation}/>
+                       <Groep  navigation={this.props.navigation} />
     
                   
                   
@@ -54,7 +57,7 @@ const mapStateToProps = (state) => {
         return {
             username: state.auth.username,
             token: state.auth.token,
-            takken:state.tak.takken,
+            takken:state.tak.takken[0].takken,
             kinderen:state.kind.kinderen,
             user:state.user.users,
          //   role:state.user.users.login.role

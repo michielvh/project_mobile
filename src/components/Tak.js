@@ -13,25 +13,25 @@ import { connect } from 'react-redux';
     }
   render() {
    
+   
     {if(this.props.tak!=null){
       return(<View>
  <TouchableHighlight 
-              onPress={() => this.props.navigation.navigate('TakDetails', this.props.tak )}
+              onPress={() => this.props.navigation.navigate('TakTabs', this.props.tak )}
             >
               <Text key={this.props.tak.idtak}> {this.props.tak.naam}</Text>
             </TouchableHighlight>
 
       </View>);
-    }else{
-      
+    }else{ 
     return (
       <View>
           
-          { this.takken().map((tak) => {
+          { this.props.takken.map((tak) => {
             console.log(tak);
           return (
-            <TouchableHighlight 
-              onPress={() => this.props.navigation.navigate('TakDetails', { tak })}
+            <TouchableHighlight key={tak.idtak}
+              onPress={() => this.props.navigation.navigate('TakTabs', { tak })}
             >
               <Text key={tak.idtak}> {tak.naam}</Text>
             </TouchableHighlight>

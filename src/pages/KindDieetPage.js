@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, Text, TouchableHighlight, Button } from 'react-native';
+import { ScrollView, Text, TouchableHighlight, Button, Alert } from 'react-native';
 
 class KindDieetPage extends Component {
     dieeten(x){
@@ -15,12 +15,19 @@ class KindDieetPage extends Component {
         
             return (
               <ScrollView>
-                    { this.dieeten(kind.dieeten).map((dieet) => {
+                    { kind.dieeten.map((dieet) => {
                
             return (
-              <TouchableHighlight 
-              /*   onPress={() => this.props.navigation.navigate('KindNavigator', { kind })} */
-              //HIER ALERT ONPRESS MET INFO VOOGD
+              <TouchableHighlight  key={dieet.iddieet}  onPress={() => Alert.alert(
+                dieet.naam, 'Opmerking: '+dieet.opmerkingen,
+                [
+                 /*  {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+                  {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}, */
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              )} 
+             
               >
                 <Text  key={dieet.iddieet}> {dieet.naam}</Text>
               </TouchableHighlight>
